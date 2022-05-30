@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'; //modulo http para fazer o request da api
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +10,6 @@ import { PalestrantesComponent } from './palestrantes/palestrantes.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
