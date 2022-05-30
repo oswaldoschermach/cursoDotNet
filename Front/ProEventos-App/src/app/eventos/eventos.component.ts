@@ -8,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventosComponent implements OnInit {
 
-  public eventos: any;
+  public eventos: any = [];
 
 
   constructor(private http: HttpClient) { }
+
+  exibirImagem: boolean = true;
 
   public getEventos(): void {
       this.http.get('https://localhost:5001/api/Evento').subscribe(
@@ -20,6 +22,9 @@ export class EventosComponent implements OnInit {
       );
   }
 
+  alterarImagem() {
+    this.exibirImagem = !this.exibirImagem;
+  }
 
   ngOnInit() { //inicializa ao abrir a aplicação
       this.getEventos();
