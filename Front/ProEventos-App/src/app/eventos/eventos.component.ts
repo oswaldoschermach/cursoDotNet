@@ -14,16 +14,10 @@ export class EventosComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   public getEventos(): void {
-    this.eventos = [
-      {
-        Tema: "Angular",
-        Local: "Curitiba"
-      },
-      {
-        Tema: "C#",
-        Local: "Sao Paulo"
-      }
-    ]
+      this.http.get('https://localhost:5001/api/Evento').subscribe(
+        response => this.eventos = response,
+        error => console.log(error)
+      );
   }
 
 
