@@ -1,9 +1,9 @@
-@import '../node_modules/@fortawesome/fontawesome-free/css/regular.min.css';
 
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
 
 /* Importing Datepicker SCSS file. */
-@import "~ngx-bootstrap/datepicker/bs-datepicker";
+@import "~ngx-bootstrap/datepicker/bs-datepicker.css";
 
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
