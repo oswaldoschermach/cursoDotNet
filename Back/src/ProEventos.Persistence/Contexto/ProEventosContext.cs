@@ -20,6 +20,18 @@ namespace ProEventos.Peristence.Contexto
         {
             modelBuilder.Entity<PalestranteEvento>()
                 .HasKey(PE => new {PE.EventoId, PE.PalestranteId}); //para associar o evento ao palestrante
+            
+            //deleta as redes sociais tanto do evento quanto do palestrante
+            //isso acontece pois redes sociais tem duas chaves estrangeiras e esta atrelado a duas entidades
+            modelBuilder.Entity<Evento>()
+                        .HasMany(e => e.RedesSociais)
+                        .WithOne(rs => rs.Evento)
+                        .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Palestrante>()
+                        .HasMany(p => p.RedesSociais)
+                        .WithOne(rs => rs.Palestrante)
+                        .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

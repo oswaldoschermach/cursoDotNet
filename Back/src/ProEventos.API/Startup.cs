@@ -12,8 +12,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ProEventos.Application;
+using ProEventos.Application.Contratos;
 using ProEventos.Peristence;
 using ProEventos.Peristence.Contexto;
+using ProEventos.Persistence;
+using ProEventos.Persistence.Contratos;
 
 namespace ProEventos.API
 {
@@ -32,7 +36,16 @@ namespace ProEventos.API
             services.AddDbContext<ProEventosContext>(
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
-            services.AddControllers();
+            //para ignorar os loops de objetos ciclicos, é necessario instalar o NewtonSOft
+            services.AddControllers()
+                    .AddNewtonsoftJson(elemento => elemento.SerializerSettings.ReferenceLoopHandling =
+                        Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    );
+
+            services.AddScoped<IEventosService, EventoService>(); //usado para funcionar a injeção de dependencias
+            services.AddScoped<IGeralPersist, GeralPersist>();
+            services.AddScoped<IEventoPersist, EventosPersist>();
+
             services.AddCors(); //adiciona uma politica de acesso
             services.AddSwaggerGen(c =>
             {

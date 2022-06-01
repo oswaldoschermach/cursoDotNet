@@ -14,7 +14,7 @@ namespace ProEventos.Persistence
         public EventosPersist(ProEventosContext context)
         {
             _context = context;
-
+            _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking; //para impedir o traqueamento na hora do put
         }
         public async Task<Evento[]> GetAllEventosAsync(bool includePalestrantes = false)
         {
